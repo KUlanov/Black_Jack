@@ -9,11 +9,22 @@ class Gamer
   end
 
   def take_card(deck)
-   deck_g << deck.pop
+   deck_g << deck.pop   
   end
 
   def summ_card
-    deck_g.each do |s, i|
-      if i.to_int == 
-      self.summ =
+    deck_g.each do |i[1]|
+      if i.to_int
+        self.summ = summ +i
+      elsif i == "A"
+        if summ < 12
+          summ += 10
+        else
+          summ += 1
+        end
+      else
+        summ += 10
+      end
+    end
   end
+end
