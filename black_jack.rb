@@ -1,6 +1,6 @@
 class BlackJack
 
-  attr_accessor :current_deck, :player, :comp, :current_bank, current_player
+  attr_accessor :current_deck, :player, :comp, :current_bank, :current_player
 
   def initialize(name)
     @current_deck = Deck.new
@@ -11,17 +11,18 @@ class BlackJack
 
   def deal
     current_deck.shuffle
-    player.take_card
-    player.take_card
+    player.take_card(current_deck)
+    player.take_card(current_deck)
     player.bank -=10
-    comp.take_card
-    comp.take_card  
-    comp.bank -=10  
+    comp.take_card(current_deck)
+    comp.take_card(current_deck)
+    comp.bank -=10
     @current_bank +=20
     @current_player = player
   end
 
   def menu
+    player.show_gamer
     puts 'Что выхотите сделать? Введите номер меню.'
     puts '1. Пропустить.'
     puts '2. Добавить карту.'
@@ -31,10 +32,11 @@ class BlackJack
     when 1
       skip
     when 2
-      current_player.take_card
-      if current_player.summ_card > 21 
+      current_player.take_card(current_deck)
+      if current_player.summ > 21 
         reveal
       else
+        player.show_gamer
         skip
       end
     when 3
@@ -57,7 +59,8 @@ class BlackJack
   end
 
   def reveal
-    if player.summ_card > comp.summ_card
+    player.show_gamer
+    if (player.summ > comp.summ) && (player.summ < 22)
       vinner(player)
     else
       vinner(comp)
@@ -68,5 +71,8 @@ class BlackJack
     name.bank += current_bank
   end
 
+  def diller_menu
+    
 
+end
 
