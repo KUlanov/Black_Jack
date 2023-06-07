@@ -9,9 +9,9 @@ class Gamer
   end
 
   def show_gamer
-    puts "Ваши карты: #{@deck_g}"
-    puts "Ваш банк: #{@bank}"
-    puts "Сумма ваших карт :#{summ}"
+    puts "Карты: #{@deck_g}"
+    puts "Банк: #{@bank}"
+    puts "Сумма карт :#{summ}"
   end
 
   def take_card(deck)
@@ -25,7 +25,7 @@ class Gamer
       if i[1].class == Integer
         self.summ = summ + i[1]
       elsif i[1] == "A"
-        if summ < 12
+        if summ < 11
           self.summ += 11
         else
           self.summ += 1
