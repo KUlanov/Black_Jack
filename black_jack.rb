@@ -22,25 +22,32 @@ class BlackJack
   end
 
   def menu
-    player.show_gamer
-    puts 'Что выхотите сделать? Введите номер меню.'
-    puts '1. Пропустить.'
-    puts '2. Добавить карту.'
-    puts '3. Открыть карты.'
-    input = gets.to_i
-    case input
-    when 1
-      skip
-    when 2
-      current_player.take_card(current_deck)
-      if current_player.summ > 21 
-        reveal
-      else
-        player.show_gamer
+    loop do
+      player.show_gamer
+      puts 'Что выхотите сделать? Введите номер меню.'
+      puts '1. Пропустить.'
+      puts '2. Добавить карту.'
+      puts '3. Открыть карты.'
+      input = gets.to_i
+      case input
+      when 1
         skip
+      when 2
+        if player.deck_g.length == 3
+          puts "У вас уже 3 карты!"
+        else
+          current_player.take_card(current_deck)
+          if current_player.summ > 21
+            vinner(comp)
+          else
+            player.show_gamer
+            skip
+          end
+        end
       end
-    when 3
-      reveal
+      when 3
+        reveal
+      end
     end
   end
 
@@ -69,9 +76,19 @@ class BlackJack
   
   def vinner(name)
     name.bank += current_bank
+    puts "Победитель #{name.name}"
+    name.show_gamer
   end
 
   def diller_menu
+    if comp.summ < 17
+      comp.take_card(current_deck)
+      vinner(player) if comp.summ > 21
+      skip
+    else
+      skip
+    end
+  end
     
 
 end
