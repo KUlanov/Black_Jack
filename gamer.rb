@@ -8,22 +8,30 @@ class Gamer
     @summ = 0
   end
 
+  def show_gamer
+    puts "Ваши карты: #{@deck_g}"
+    puts "Ваш банк: #{@bank}"
+    puts "Сумма ваших карт :#{summ}"
+  end
+
   def take_card(deck)
-   deck_g << deck.pop   
+   deck_g << deck.deck.pop
+   summ_card
   end
 
   def summ_card
-    deck_g.each do |i[1]|
-      if i.to_int
-        self.summ = summ +i
-      elsif i == "A"
+    self.summ = 0
+    deck_g.each do |i|
+      if i[1].class == Integer
+        self.summ = summ + i[1]
+      elsif i[1] == "A"
         if summ < 12
-          summ += 10
+          self.summ += 11
         else
-          summ += 1
+          self.summ += 1
         end
       else
-        summ += 10
+        self.summ += 10
       end
     end
   end
