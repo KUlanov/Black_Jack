@@ -79,19 +79,22 @@ class BlackJack
     puts "Победитель #{name.name}"
     puts "Сумма карт игрока #{player.summ}"
     puts "Сумма карт диллера #{comp.summ}"
-    v_vin
+    if player.bank > 0 && comp.bank > 0
+      deal
+    else
+      v_vin
+    end
     puts
   end
 
   def v_vin
-    if player.bank > 0 && comp.bank > 0
-      deal
-    else
-      puts "Игра закончена:"
-      puts player.show_gamer
-      puts
-      puts comp.show_gamer
-    end
+    puts "Игра закончена:"
+    puts player.name
+    puts player.bank
+    puts
+    puts "Диллер:"
+    puts comp.bank
+    puts
   end
 
   def diller_menu
@@ -105,8 +108,7 @@ class BlackJack
     else
       skip
     end
-  end
-    
+  end    
 
 end
 
