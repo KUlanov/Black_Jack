@@ -67,8 +67,14 @@ class BlackJack
   end
 
   def reveal
-    if (player.summ > comp.summ) && (player.summ < 22)
+    if (player.summ > comp.summ)
       vinner(player)
+    elsif player.summ == comp.summ
+      puts "Ничья"
+      puts
+      player.bank +=10
+      comp.bank +=10
+      deal
     else
       vinner(comp)
     end
@@ -77,8 +83,11 @@ class BlackJack
   def vinner(name)
     name.bank += current_bank
     puts "Победитель #{name.name}"
+    puts "Карты игрока: #{player.deck_g}"
     puts "Сумма карт игрока #{player.summ}"
+    puts "Карты диллера: #{comp.deck_g}"
     puts "Сумма карт диллера #{comp.summ}"
+    puts
     if player.bank > 0 && comp.bank > 0
       deal
     else
