@@ -9,8 +9,8 @@ class Deck
       (2 .. 10).each do |i|
         self.deck << [s, i]
       end
-      ["J", "D", "K", "A"].each do |i| 
-        self.deck <<[s, i]  
+      ["J", "D", "K", "A"].each do |i|
+        self.deck <<[s, i]
       end
     end
   end
@@ -18,10 +18,4 @@ class Deck
   def shuffle
     deck.sort_by!{rand}
   end
-
-  def take_card
-    i = deck.length
-    deck[]
-  end
-
 end
