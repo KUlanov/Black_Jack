@@ -11,5 +11,4 @@ class Gamer
   def take_card(deck)
    deck_g << deck.deck.pop
   end
-  
 end
