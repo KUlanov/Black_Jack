@@ -130,7 +130,7 @@ class BlackJack
     name.bank += current_bank
     puts "Победитель #{name.name}"
     show_card
-    bank
+    zero_bank
   end
 
   def draw
@@ -149,7 +149,7 @@ class BlackJack
     puts
   end
 
-  def bank
+  def zero_bank
     if player.bank > 0 && comp.bank > 0
       contine
     else
